@@ -69,7 +69,7 @@ This project provides a RESTful API to manage a university's hierarchical struct
 │       └── Department of Political Science
 │           ├── Teacher W
 │           └── Teacher X` 
-
+```
 ----------
 
 ## **Technical Requirements**
