@@ -214,3 +214,9 @@ Run unit tests for controllers:
 
 -   [PostgreSQL Documentation](https://www.postgresql.org/docs/)
 -   [SQL Server Documentation](https://docs.microsoft.com/en-us/sql/sql-server/)
+
+## **Authors**
+
+- @demeke-getaneh
+- @Melese
+- @michaelwondemuu ([GitHub Profile](https://github.com/MichaelWondemuu))
