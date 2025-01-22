@@ -1,106 +1,216 @@
-<h1># perago-nestjs-api</h1>
-Perago Information Systems's  NestJS API scaffold 
-clone this repository .
-execute  'install npm ' then
-all the required dependence will be installed.
-create a database named 'orga_structure'
-execute 'nest start'. 
-access and test your api via swagger 
-http://localhost:3000/api
+# University Hierarchy API
 
-<h1> Requirements </h1>
-<h2> Build  web application(API) for registering organization's employee hierarchy or structure </h2>
-<p style="text-align:justfy; color:blue">
-Assume medium level organization management structure with different level of positions/roles
-Hierarchy. At the top of the Hierarch there is CEO and every position below a given hierarchy will
-answer/Report to the immediate position in the organization's position structure hierarchy
-</p>
-<ol>
-<li> shall create employee position/role  </li>
-<li>  Build RESTFull API using NestJS (version >= 9) , PostgreSQL or SQL Server database as data 
-store</li>
-<li> The position should be hierarchical there is a parent child relationship between the positions e.g. CEO can be root position no parent and CFO is a child of CEO </li>
-<li>shall get and list the positions in a tree mode with unlimited n positions e.g. 
-<pre>
- CEO
- ├── CTO
- │   └── Project Manager
- │       └── Product Owner
- │           ├── Tech Lead
- │           │   ├── Frontend Developer
- │           │   ├── Backend Developer
- │           │   ├── DevOps Engineer
- │           │   └── ..
- │           ├── QA Engineer
- │           ├── Scrum Master
- │           └── ...
- ├── CFO
- │   ├── Chef Accountant
- │   │   ├── Financial Analyst
- │   │   └── Account and Payable
- │   └── Internal Audit
- ├── COO
- │   ├── Product Manager
- │   ├── Operation Manager
- │   ├── Customer Relation
- │   └── ...
- └── HR
- </pre>
- </li>
- <li>Model (you can update this model if needed) 
- 
-<table class="table">
-<tr>  <th>Column </th>  <th>Type </th></tr>
-<tr> <td> id </td>  <td> GUID </td>  </tr>
-<tr> <td> name </td>  <td> string </td>  </tr>
-<tr> <td> description </td>  <td> string </td>  </tr>
-<tr> <td> parentId </td>  <td> GUID </td>  </tr>
-</table>	
-<li>
-  <pre>
-a. Insert new employe position/role
-    • Every position/role must contain minimum information like Name, Description and Managing 
-      position/role to whom the position Report To etc.
-b. Update previously saved position/role at any time
-c. Get single position/role detail     
-d. Get all position/role structure according to hierarchy (You can use table or tree)
-e. Get all childrens of a specific position/role 
-f. remove  position/role  at any time based on the heirarchy 
-  </pre>  
-  </li>
-  <p>
-  <h3> Note:</h3>
-  <ul>
- <li> Every position/role will answer/Report to one position/role except CEO</li>
-<li> The client wants to add or Update management structure at any time.</li>
-<li>The development should consider separation of concern and maintainability.</li>
-<li>The development should include Unit Test for the controller.</li>
-<li>To test your API, use Postman or Swagger</li>
-  </ul>
-  </p>
-  <p>
-<h3>Reading Materials</h3>
-<h4> Books</h4>
-<ul>
- <li>Patterns, Principles and Practices of Domain Driven Design (Scott Millett Nick Tune)</li>
-<li> Clean Architecture, A Craftsman’s Guide to Software Structure and Design, (Robert C Martin)</li>
-<li>DDD Reference (Domain Driven Design Reference)</li>
-<li>DDD Quickly (Domain Driven Design Quickly)</li>
-  </ul>
-  <h4> Links</h4>
-<h4>For Backend</h4>
-<ul>
-  <li> <a href="https://docs.nestjs.com/"> Nest (NestJS) </a></li>
-  <li> <a href="https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/"> DDD, Hexagonal, Onion, Clean, CQRS, … How I put it all together </li>   </li>
-<li> <a href="https://www.ibm.com/cloud/architecture/architectures/event-driven-cqrs-pattern/"> Command Query Responsibility Segregation (CQRS) pattern <a> </li>
-<li><a href="https://www.ibm.com/cloud/architecture/architectures/event-driven-cqrs-pattern/"> What is the CQRS pattern? </a></li>
-  </ul>
-<h4>For Database<h4>
-  <ul>
-    <li><a href="https://www.postgresql.org/docs/9.6/postgres-fdw.html">  PostgreSQL Documentation </a></li>    
-    <li> <a href="https://docs.microsoft.com/en-us/sql/sql-server/?view=sql-server-ver16"> SQL Server </a>   </li>
-    </ul>
-</p>
-</ol>
-  
-  
+## **Overview**
+
+This project provides a RESTful API to manage a university's hierarchical structure using **NestJS**. It allows for the creation, updating, retrieval, and deletion of academic positions, organized in a parent-child hierarchy. The top-level position is the **University President**, and every level below reports to its immediate superior in the hierarchy.
+
+----------
+
+## **Features**
+
+-   **Position/Role Management**:
+    -   Add new positions with parent-child relationships.
+    -   Update existing positions with new details.
+    -   Delete positions and their hierarchy.
+-   **Hierarchical Data Retrieval**:
+    -   Retrieve positions as a tree structure.
+    -   Fetch all child positions of a specific node.
+    -   Get a detailed view of a single position.
+-   **Testing and Documentation**:
+    -   Swagger integration for API testing at [http://localhost:3000/api](http://localhost:3000/api).
+    -   Unit tests for controllers.
+
+----------
+
+## **Hierarchy Example**
+```
+`University President
+├── Institute of IoT
+│   ├── School of Computing
+│   │   ├── Department of Computer Science
+│   │   │   ├── Teacher A
+│   │   │   └── Teacher B
+│   │   ├── Department of Software Engineering
+│   │       ├── Teacher C
+│   │       └── Teacher D
+│   ├── School of Electrical and Mechanical
+│   │   ├── Department of Electrical Engineering
+│   │   │   ├── Teacher E
+│   │   │   └── Teacher F
+│   │   ├── Department of Mechanical Engineering
+│   │       ├── Teacher G
+│   │       └── Teacher H
+│   ├── School of Civil
+│       ├── Department of COTOM
+│       │   ├── Teacher I
+│       │   └── Teacher J
+│       └── Department of Civil Engineering
+│           ├── Teacher K
+│           └── Teacher L
+├── Institute of Social Science
+│   ├── School of Humanities
+│   │   ├── Department of History
+│   │   │   ├── Teacher M
+│   │   │   └── Teacher N
+│   │   ├── Department of Literature
+│   │       ├── Teacher O
+│   │       └── Teacher P
+│   ├── School of Behavioral Studies
+│   │   ├── Department of Psychology
+│   │   │   ├── Teacher Q
+│   │   │   └── Teacher R
+│   │   ├── Department of Sociology
+│   │       ├── Teacher S
+│   │       └── Teacher T
+│   ├── School of Social Policy
+│       ├── Department of Public Policy
+│       │   ├── Teacher U
+│       │   └── Teacher V
+│       └── Department of Political Science
+│           ├── Teacher W
+│           └── Teacher X` 
+
+----------
+
+## **Technical Requirements**
+
+-   **Backend**:
+    -   **Framework**: NestJS (version >= 9)
+    -   **Database**: PostgreSQL or SQL Server
+    -   **ORM**: TypeORM or Prisma
+    -   **Testing**: Jest for unit testing
+    -   **API Documentation**: Swagger
+    - ---
+-   **Database Model**:
+    
+   | **Column**    | **Type** | **Description**                                                |
+| ------------- | -------- | -------------------------------------------------------------- |
+| `id`          | `int`    | Unique identifier for each position.                           |
+| `name`        | `string` | Name of the position (e.g., "School of Computing").            |
+| `description` | `string` | Details or information about the position.                     |
+| `parentId`    | `int`    | ID of the parent position (null for the root position).        | |
+    
+
+----------
+
+## **Installation**
+
+### 1. Clone the Repository
+
+bash
+
+CopyEdit
+
+`git clone <repository-url>
+cd university-hierarchy-nestjs-api` 
+
+### 2. Install Dependencies
+
+
+`npm install` 
+
+### 3. Set Up the Database
+
+-   Create a database named `orga_structure` in your PostgreSQL or SQL Server instance.
+
+### 4. Start the Application
+
+
+`npm start` 
+
+----------
+
+## **Usage**
+
+### API Endpoints
+
+#### 1. **Add a Position**
+
+-   **POST** `/positions`
+-   **Body**:
+    
+    
+    `{
+      "name": "School of Computing",
+      "description": "A school focusing on computing technologies",
+      "parentId": "GUID of Institute of IoT"
+    }` 
+    
+
+#### 2. **Update a Position**
+
+-   **PUT** `/positions/:id`
+-   **Body**:
+        
+    `{
+      "name": "Updated Position Name",
+      "description": "Updated Description",
+      "parentId": "GUID of new parent position"
+    }` 
+    
+
+#### 3. **Get a Single Position**
+
+-   **GET** `/positions/:id`
+
+#### 4. **Get All Positions in Tree Format**
+
+-   **GET** `/positions/tree`
+
+#### 5. **Get All Children of a Position**
+
+-   **GET** `/positions/:id/children`
+
+#### 6. **Delete a Position**
+
+-   **DELETE** `/positions/:id`
+
+----------
+
+## **Testing and API Documentations**
+
+### Swagger
+
+Access API documentation and test endpoints using Swagger at [http://localhost:3000/api](http://localhost:3000/api).
+
+### Postman
+
+Use Postman to test API requests and responses by importing the provided collection (if available).
+
+### Unit Tests
+
+Run unit tests for controllers:
+
+`npm run test` 
+
+----------
+
+## **Best Practices**
+
+-   **Separation of Concerns**: Use modular development with NestJS modules.
+-   **Maintainability**: Follow clean architecture principles.
+-   **Scalability**: Support unlimited hierarchical depth.
+
+----------
+
+## **Reading Materials**
+
+### **Books**
+
+-   _Patterns, Principles, and Practices of Domain Driven Design_ (Scott Millett, Nick Tune)
+-   _Clean Architecture: A Craftsman’s Guide to Software Structure and Design_ (Robert C. Martin)
+-   _Domain Driven Design Reference_ (DDD Reference)
+-   _Domain Driven Design Quickly_ (DDD Quickly)
+
+### **Links**
+
+#### **Backend**
+
+-   [NestJS Documentation](https://nestjs.com/)
+-   DDD, Hexagonal, Onion, Clean, CQRS
+-   [Command Query Responsibility Segregation (CQRS)](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs)
+
+#### **Database**
+
+-   [PostgreSQL Documentation](https://www.postgresql.org/docs/)
+-   [SQL Server Documentation](https://docs.microsoft.com/en-us/sql/sql-server/)
