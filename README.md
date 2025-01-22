@@ -85,10 +85,10 @@ This project provides a RESTful API to manage a university's hierarchical struct
     
    | **Column**    | **Type** | **Description**                                                |
 | ------------- | -------- | -------------------------------------------------------------- |
-| `id`          | `int`    | Unique identifier for each position.                           |
+| `id`          | `uuid`    | Unique identifier for each position.                           |
 | `name`        | `string` | Name of the position (e.g., "School of Computing").            |
 | `description` | `string` | Details or information about the position.                     |
-| `parentId`    | `int`    | ID of the parent position (null for the root position).        | |
+| `parentId`    | `uuid`    | ID of the parent position (null for the root position).        | |
     
 
 ----------
