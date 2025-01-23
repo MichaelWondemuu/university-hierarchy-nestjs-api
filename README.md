@@ -97,11 +97,8 @@ This project provides a RESTful API to manage a university's hierarchical struct
 
 ### 1. Clone the Repository
 
-bash
 
-CopyEdit
-
-`git clone <repository-url>
+`git clone https://github.com/MichaelWondemuu/university-hierarchy-nestjs-api.git
 cd university-hierarchy-nestjs-api` 
 
 ### 2. Install Dependencies
