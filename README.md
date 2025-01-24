@@ -76,8 +76,8 @@ This project provides a RESTful API to manage a university's hierarchical struct
 
 -   **Backend**:
     -   **Framework**: NestJS (version >= 9)
-    -   **Database**: PostgreSQL or SQL Server
-    -   **ORM**: TypeORM or Prisma
+    -   **Database**: PostgreSQL (Recommended) or SQL Server
+    -   **ORM**: TypeORM 
     -   **Testing**: Jest for unit testing
     -   **API Documentation**: Swagger
     - ---
@@ -100,6 +100,9 @@ This project provides a RESTful API to manage a university's hierarchical struct
 
 `git clone https://github.com/MichaelWondemuu/university-hierarchy-nestjs-api.git
 cd university-hierarchy-nestjs-api` 
+### or install by your self
+`$ npm i -g @nestjs/cli
+$ nest new university-hierarchy-nestjs-api`
 
 ### 2. Install Dependencies
 
