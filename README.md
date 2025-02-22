@@ -5,7 +5,23 @@
 This project provides a RESTful API to manage a university's hierarchical structure using **NestJS**. It allows for the creation, updating, retrieval, and deletion of academic positions, organized in a parent-child hierarchy. The top-level position is the **University President**, and every level below reports to its immediate superior in the hierarchy.
 
 ----------
-
+##Preconditions
+1. Install Node.js and npm —- ownload and install Node.js (https://nodejs.org/en)
+2. Verify installation by:
+              node -v   # Check Node.js version
+               npm -v    # Check npm version
+3. Download Git and install it.
+  4. Verify installation  by : 
+            git --version
+ 5. Clone the Repository
+                 git clone https://github.com/MichaelWondemuu/react-base-code.git
+  6.   Navigate into the project folder     
+             cd react-base-code
+   7.  Install Dependencies   
+                npm install
+8. Start the Development Server
+         npm start
+----------
 ## **Features**
 
 -   **Position/Role Management**:
@@ -216,7 +232,7 @@ Run unit tests for controllers:
 -   [SQL Server Documentation](https://docs.microsoft.com/en-us/sql/sql-server/)
 
 ## **Authors**
-
 - @demeke-getaneh
 - @Melese
 - @michaelwondemuu ([GitHub Profile](https://github.com/MichaelWondemuu))
+- @dersomekuriaw ([GitHub Profile](https://github.com/DersoMekuriaw))
